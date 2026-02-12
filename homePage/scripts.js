@@ -1728,74 +1728,80 @@ const showTrendingVideos = (data) => {
 };
 showTrendingVideos(data);
 
-const getSuggestionAPI =(search) =>{
+const getSuggestionAPI = (search) => {
   // console.log("API CALLED...", search);
   // const request = fetch(`https://youtube138.p.rapidapi.com/auto-complete/?q=${search}&hl=en&gl=US`, {
   //   method: "GET",
   //   headers: {
   //   "x-rapidapi-host": "youtube138.p.rapidapi.com",
-	//   "x-rapidapi-key": "a3e1a43d1cmshc780918109af492p11a868jsn9ee0f6a88eca",
+  //   "x-rapidapi-key": "a3e1a43d1cmshc780918109af492p11a868jsn9ee0f6a88eca",
   //   },
-  // }); 
+  // });
   // request.then((response) => {
   //   const pr2=response.json();
 
   //   pr2.then((data)=>{
   //     // console.log("result: ",data);
+  //     renderSuggestionData(data);
   //   })
-  
+
   // }).catch((err) =>{
-    //   alert("Suggestion error: ",err.message);
-    // })
-        renderSuggestionData();
+  //   alert("Suggestion error: ",err.message);
+  // })
+  renderSuggestionData();
 };
 
-let id=null;
+let id = null;
 
-const searchContainerElement = document.getElementById("search-suggestion-container");  
-const searchInput = document.getElementById("searchText-input");  
+const searchContainerElement = document.getElementById(
+  "search-suggestion-container",
+);
+const searchInput = document.getElementById("searchText-input");
 
 const getSmartSuggestion = (txt) => {
   clearTimeout(id);
-  id= setTimeout(()=>{getSuggestionAPI(txt)},1000)
+  id = setTimeout(() => {
+    getSuggestionAPI(txt);
+  }, 1000);
 };
 
 const HandleAutoSuggest = (e) => {
   const search = e.target.value;
-  
+
   getSmartSuggestion(search);
 };
 
-const renderSuggestionData=(obj)=>{
-  const dummyOBJ={
-    "query": "comedy",
-    "results": [
-        "comedy",
-        "comedy club",
-        "comedy movies",
-        "comedy stand up",
-        "comedy nights with champions",
-        "comedy darbar",
-        "comedy scenes telugu",
-        "comedy movies 2025 full movie",
-        "comedy movies free",
-        "comedy movies hindi full",
-        "comedy scenes tamil",
-        "comedy special",
-        "comedy video",
-        "comedy central"
-    ]
-  }
+const renderSuggestionData = (obj) => {
+  const dummyOBJ = {
+    query: "comedy",
+    results: [
+      "comedy",
+      "comedy club",
+      "comedy movies",
+      "comedy stand up",
+      "comedy nights with champions",
+      "comedy darbar",
+      "comedy scenes telugu",
+      "comedy movies 2025 full movie",
+      "comedy movies free",
+      "comedy movies hindi full",
+      "comedy scenes tamil",
+      "comedy special",
+      "comedy video",
+      "comedy central",
+    ],
+  };
 
-  const {results} = dummyOBJ;
+  searchContainerElement.innerHTML = "";
+  const { query, results } = dummyOBJ /*obj*/ ;
 
-  results.forEach((result)=>{
+  results.slice(0, 10).forEach((result) => {
     const newText = document.createElement("p");
-    newText.innerText=result;
-    newText.addEventListener('click',(e)=>{
-      searchInput.value=e.target.innerText;
-      searchContainerElement.innerHTML="";
-    })
-    searchContainerElement.appendChild(newText)
+    newText.innerHTML = `<b>${result.substring(0, query.length)}</b>${result.substring(query.length)}`;
+    newText.addEventListener("click", (e) => {
+      searchInput.value = e.target.innerText;
+      searchContainerElement.innerHTML = "";
+    });
+    searchContainerElement.appendChild(newText);
   });
 };

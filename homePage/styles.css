@@ -47,27 +47,6 @@ header {
   display: none;
 }
 
-#search-suggestion-container{
-  position: absolute;
-  top: 80px;
-  left: 680px;
-  background-color: rgb(191, 205, 243);
-  display: flex;
-  flex-direction: column;
-  border-bottom-left-radius: 0.75rem;
-  border-bottom-right-radius: 0.75rem;
-}
-
-#search-suggestion-container p{
-  border-bottom: 1px solid lightgrey;
-  cursor: pointer;
-  transition: all 200ms ease-in-out;
-  padding: 0.75rem;
-}
-#search-suggestion-container p:hover{
-  background-color: beige;
-}
-
 @media (width>=600px) {
   .layout-container {
     display: grid;
@@ -89,7 +68,7 @@ header {
   header {
     display: block;
     background-color: lightgrey;
-    height: 7rem;
+    height: 10rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -99,6 +78,7 @@ header {
 .search-container {
   display: flex;
   width: 60%;
+  position: relative;
 }
 .search-container input {
   flex-grow: 1;
@@ -112,3 +92,26 @@ header {
   border-bottom-right-radius: 0.75rem;
 }
 
+#search-suggestion-container {
+  position: absolute;
+  top: 2.6rem;
+  left: 0.4rem;
+  background-color: rgb(250, 250, 250);
+  display: flex;
+  flex-direction: column;
+  border-bottom-left-radius: 0.75rem;
+  border-bottom-right-radius: 0.75rem;
+  width: 91%;
+}
+
+#search-suggestion-container p {
+  border-bottom: 1px solid rgb(246, 218, 218);
+  color: black;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+  padding: 0.75rem;
+}
+#search-suggestion-container p:hover {
+  background-color: rgb(232, 231, 212);
+  color: black;
+}
