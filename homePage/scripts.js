@@ -1664,42 +1664,14 @@ const data = {
   ],
 };
 
-console.log(data);
-
-// const rootElement = document.getElementById("root");
-
-// const showTredingVideos = () => {
-//   const { list } = data;
-//   list.forEach((video) => {
-//     const {
-//       author,
-//       title,
-//       publishedText,
-//       viewCountText,
-//       authorThumbnails,
-//       videoThumbnails,
-//     } = video;
-//     const newDiv = document.createElement("div");
-//     newDiv.innerHTML=`
-//     <p>${title}</p>
-//     <img src=${authorThumbnails[4].url} />
-//     <p>${author}</p>
-//     <p>${viewCountText}</p>
-//     <p>${publishedText}</p>
-//     `;
-
-//     rootElement.appendChild(newDiv);
-//   });
-// };
-
-// showTredingVideos();
+// console.log(data);
 
 // const getTrendingVideos = () => {
 //     const request = fetch("https://youtube138.p.rapidapi.com/v2/trending", {
 //         method: "GET",
 //         headers: {
 //             "x-rapidapi-host": "youtube138.p.rapidapi.com",
-//             "x-rapidapi-key": "5d38208ba2mshf454af3f344fd7bp1d5909jsn7d283d47c6d9",
+//             "x-rapidapi-key": API_KEY,
 //         },
 //     });
 
@@ -1712,9 +1684,11 @@ console.log(data);
 // };
 
 // getTrendingVideos();
+console.log(data);
 
 const rootElement = document.getElementById("root");
-const showTrendingVideos = () => {
+
+const showTrendingVideos = (data) => {
   const { list } = data;
   list.forEach((video) => {
     const {
@@ -1753,7 +1727,6 @@ const showTrendingVideos = () => {
     rootElement.appendChild(newDiv);
   });
 };
-showTrendingVideos();
 
 // const searchInputElem=document.getElementById('search-text-input');
 
