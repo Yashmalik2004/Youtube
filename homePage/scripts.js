@@ -1701,7 +1701,6 @@ const showTrendingVideos = (data) => {
     } = video;
 
     const newDiv = document.createElement("div");
-    newDiv.className = "video-card";
     newDiv.innerHTML = `
       <div>
         <img class='video-thumbnail' src="${videoThumbnails[3].url}"> 
@@ -1727,10 +1726,71 @@ const showTrendingVideos = (data) => {
     rootElement.appendChild(newDiv);
   });
 };
+showTrendingVideos(data);
 
-// const searchInputElem=document.getElementById('search-text-input');
+const getSuggestionAPI =(search) =>{
+  // console.log("API CALLED...", search);
+  // const request = fetch(`https://youtube138.p.rapidapi.com/auto-complete/?q=${search}&hl=en&gl=US`, {
+  //   method: "GET",
+  //   headers: {
+  //   "x-rapidapi-host": "youtube138.p.rapidapi.com",
+	//   "x-rapidapi-key": "a3e1a43d1cmshc780918109af492p11a868jsn9ee0f6a88eca",
+  //   },
+  // }); 
+  // request.then((response) => {
+  //   const pr2=response.json();
 
-// const handleSearch = () => {
-//     const val = searchInputElem.value;
-//     window.open(`./search/?searchText=${val}`, "_self");
-// };
+  //   pr2.then((data)=>{
+  //     // console.log("result: ",data);
+  //   })
+  
+  // }).catch((err) =>{
+    //   alert("Suggestion error: ",err.message);
+    // })
+        renderSuggestionData();
+};
+
+let id=null;
+
+const searchContainerElement = document.getElementById("search-suggestion-container");
+
+const getSmartSuggestion = (txt) => {
+  clearTimeout(id);
+  id= setTimeout(()=>{getSuggestionAPI(txt)},1000)
+};
+
+const HandleAutoSuggest = (e) => {
+  const search = e.target.value;
+  
+  getSmartSuggestion(search);
+};
+
+const renderSuggestionData=(obj)=>{
+  const dummyOBJ={
+    "query": "comedy",
+    "results": [
+        "comedy",
+        "comedy club",
+        "comedy movies",
+        "comedy stand up",
+        "comedy nights with champions",
+        "comedy darbar",
+        "comedy scenes telugu",
+        "comedy movies 2025 full movie",
+        "comedy movies free",
+        "comedy movies hindi full",
+        "comedy scenes tamil",
+        "comedy special",
+        "comedy video",
+        "comedy central"
+    ]
+  }
+
+  const {results} = dummyOBJ;
+
+  results.forEach((result)=>{
+    const newText = document.createElement("p");
+    newText.innerText=result;
+    searchContainerElement.appendChild(newText)
+  });
+};
