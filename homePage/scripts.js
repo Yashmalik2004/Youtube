@@ -1752,7 +1752,8 @@ const getSuggestionAPI =(search) =>{
 
 let id=null;
 
-const searchContainerElement = document.getElementById("search-suggestion-container");
+const searchContainerElement = document.getElementById("search-suggestion-container");  
+const searchInput = document.getElementById("searchText-input");  
 
 const getSmartSuggestion = (txt) => {
   clearTimeout(id);
@@ -1791,6 +1792,10 @@ const renderSuggestionData=(obj)=>{
   results.forEach((result)=>{
     const newText = document.createElement("p");
     newText.innerText=result;
+    newText.addEventListener('click',(e)=>{
+      searchInput.value=e.target.innerText;
+      searchContainerElement.innerHTML="";
+    })
     searchContainerElement.appendChild(newText)
   });
 };
