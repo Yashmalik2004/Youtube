@@ -90,6 +90,7 @@ header {
   padding: 0.7rem 1.25rem;
   border-top-right-radius: 0.75rem;
   border-bottom-right-radius: 0.75rem;
+  cursor: pointer;
 }
 
 #search-suggestion-container {

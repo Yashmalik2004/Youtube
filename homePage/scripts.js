@@ -1805,3 +1805,13 @@ const renderSuggestionData = (obj) => {
     searchContainerElement.appendChild(newText);
   });
 };
+
+const handleSearch = () => {
+  const inputElement = document.getElementById("searchText-input");
+  const val = inputElement ? inputElement.value : "";
+  if (val.trim()) {
+    window.location.href = `search-pg.html?searchText=${encodeURIComponent(val)}`;
+  } else {
+    alert("Please enter a search term");
+  }
+};
