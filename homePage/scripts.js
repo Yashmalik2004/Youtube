@@ -1664,7 +1664,7 @@ const data = {
   ],
 };
 
-// console.log(data);
+console.log(data);
 
 // const getTrendingVideos = () => {
 //     const request = fetch("https://youtube138.p.rapidapi.com/v2/trending", {
@@ -1684,7 +1684,7 @@ const data = {
 // };
 
 // getTrendingVideos();
-console.log(data);
+// console.log(data);
 
 const rootElement = document.getElementById("root");
 
@@ -1701,6 +1701,7 @@ const showTrendingVideos = (data) => {
     } = video;
 
     const newDiv = document.createElement("div");
+    newDiv.className = "video-card";
     newDiv.innerHTML = `
       <div>
         <img class='video-thumbnail' src="${videoThumbnails[3].url}"> 
@@ -1762,7 +1763,7 @@ const getSmartSuggestion = (txt) => {
   clearTimeout(id);
   id = setTimeout(() => {
     getSuggestionAPI(txt);
-  }, 1000);
+  }, 600);
 };
 
 const HandleAutoSuggest = (e) => {
