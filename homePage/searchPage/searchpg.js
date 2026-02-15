@@ -2,32 +2,12 @@ const searchTextQuery = window.location.search;
 const queryArr = searchTextQuery.split("=");
 const encodedSearchText = queryArr[queryArr.length - 1];
 
-const getSearchResults = () => {
-  // const request = fetch(
-  //   `https://youtube138.p.rapidapi.com/search/?q=${encodedSearchText}&hl=en&gl=US`,
-  //   {
-  //     method: "GET",
-  //     headers: {
-  //       "x-rapidapi-host": "youtube138.p.rapidapi.com",
-  //       "x-rapidapi-key": "a3e1a43d1cmshc780918109af492p11a868jsn9ee0f6a88eca",
-  //     },
-  //   },
-  // );
 
-  // request.then((response) =>{
-  //   const pr2=response.json();
-  //   pr2.then((data)=>{
-  //     renderSearchResults(data);
-  //   });
-  // }).catch((err)=>{
-  //   console.log("Failed to fetch the data, ",err.message);
-  // });
-  renderSearchResults();
-};
 
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById("search-cards-container");
 
-const renderSearchResults = () => {
+// const renderSearchResults = (data) => { // for api call
+const renderSearchResults = () => { // for offline call
   const dummyData = {
     contents: [
       {
@@ -1471,13 +1451,54 @@ const renderSearchResults = () => {
     ],
     refinements: [],
   };
-  const { contents } = dummyData;
+  
+  const { contents } = dummyData /*data*/;
 
   contents.forEach((obj) => {
     const { video } = obj;
-    const newDiv=document.createElement("div");
+    console.log(video);
+    const {thumbnails,title, descriptionSnippet, publishedTimeText, stats} = video;
 
+    const newDiv=document.createElement("div");
+    newDiv.className='search-result-video-card';
+
+    newDiv.innerHTML=`
+    <div class='thumbnail-container'>
+      <img src='${thumbnails.pop().url}' width="100%"> 
+    </div> 
+    <div class="video-data-container">
+      <p>${title}</p>
+      <p>${stats.views}</p>
+      <p>${publishedTimeText}</p>
+      <p>${descriptionSnippet}</p>
+    </div>
+    `
+
+    rootElement.appendChild(newDiv);
   });
+};
+
+const getSearchResults = () => {
+  // const request = fetch(
+  //   `https://youtube138.p.rapidapi.com/search/?q=${encodedSearchText}&hl=en&gl=US`,
+  //   {
+  //     method: "GET",
+  //     headers: {
+  //       "x-rapidapi-host": "youtube138.p.rapidapi.com",
+  //       "x-rapidapi-key": "d5a6c19a78msh0f83610b8e386bbp120ee5jsn684653bb1052",
+  //     },
+  //   },
+  // );
+
+  // request.then((response) =>{
+  //   const pr2=response.json();
+  //   pr2.then((data)=>{
+  //     renderSearchResults(data); // for api call
+  //   });
+  // }).catch((err)=>{
+  //   console.log("Failed to fetch the data, ",err.message);
+  // });
+  renderSearchResults();  // for offline call
 };
 
 getSearchResults();

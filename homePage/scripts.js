@@ -1666,29 +1666,10 @@ const data = {
 
 console.log(data);
 
-// const getTrendingVideos = () => {
-//     const request = fetch("https://youtube138.p.rapidapi.com/v2/trending", {
-//         method: "GET",
-//         headers: {
-//             "x-rapidapi-host": "youtube138.p.rapidapi.com",
-//             "x-rapidapi-key": API_KEY,
-//         },
-//     });
-
-//     request.then((resp) => {
-//         const pr2 = resp.json();
-//         pr2.then((data) => {
-//             showTrendingVideos(data);
-//         });
-//     });
-// };
-
-// getTrendingVideos();
-// console.log(data);
-
 const rootElement = document.getElementById("root");
 
-const showTrendingVideos = (data) => {
+// const showTrendingVideos = (data) => { // for api call
+const showTrendingVideos = () => { // for offline call
   const { list } = data;
   list.forEach((video) => {
     const {
@@ -1727,7 +1708,26 @@ const showTrendingVideos = (data) => {
     rootElement.appendChild(newDiv);
   });
 };
-showTrendingVideos(data);
+
+const getTrendingVideos = () => {
+    // const request = fetch("https://youtube138.p.rapidapi.com/v2/trending", {
+    //     method: "GET",
+    //     headers: {
+    //         "x-rapidapi-host": "youtube138.p.rapidapi.com",
+    //         "x-rapidapi-key": "d5a6c19a78msh0f83610b8e386bbp120ee5jsn684653bb1052",
+    //     },
+    // });
+
+    // request.then((resp) => {
+    //     const pr2 = resp.json();
+    //     pr2.then((data) => {
+    //       showTrendingVideos(data); // for api call
+    //     });
+    //   });
+      showTrendingVideos(); // for offline call
+};
+
+getTrendingVideos(); // for api purpose
 
 const getSuggestionAPI = (search) => {
   // console.log("API CALLED...", search);
@@ -1743,13 +1743,13 @@ const getSuggestionAPI = (search) => {
 
   //   pr2.then((data)=>{
   //     // console.log("result: ",data);
-  //     renderSuggestionData(data);
+  //     renderSuggestionData(data); //closed for api purpose
   //   })
 
   // }).catch((err) =>{
   //   alert("Suggestion error: ",err.message);
   // })
-  renderSuggestionData();
+  renderSuggestionData(); // for offline call
 };
 
 let id = null;
@@ -1794,7 +1794,7 @@ const renderSuggestionData = (obj) => {
   };
 
   searchContainerElement.innerHTML = "";
-  const { query, results } = dummyOBJ /*obj*/ ;
+  const { query, results } =dummyOBJ/*obj*/;
 
   results.slice(0, 10).forEach((result) => {
     const newText = document.createElement("p");
@@ -1816,3 +1816,4 @@ const handleSearch = () => {
     alert("Please enter a search term");
   }
 };
+
