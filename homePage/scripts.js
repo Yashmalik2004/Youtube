@@ -1,3 +1,4 @@
+
 const data = {
   status: "success",
   list: [
@@ -1714,7 +1715,7 @@ const getTrendingVideos = () => {
     //     method: "GET",
     //     headers: {
     //         "x-rapidapi-host": "youtube138.p.rapidapi.com",
-    //         "x-rapidapi-key": "d5a6c19a78msh0f83610b8e386bbp120ee5jsn684653bb1052",
+    //         "x-rapidapi-key": RAPIDAPI_KEY_TRENDING,
     //     },
     // });
 
@@ -1735,7 +1736,7 @@ const getSuggestionAPI = (search) => {
   //   method: "GET",
   //   headers: {
   //   "x-rapidapi-host": "youtube138.p.rapidapi.com",
-  //   "x-rapidapi-key": "a3e1a43d1cmshc780918109af492p11a868jsn9ee0f6a88eca",
+  //   "x-rapidapi-key": RAPIDAPI_KEY_SUGGESTION,
   //   },
   // });
   // request.then((response) => {

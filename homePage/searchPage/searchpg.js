@@ -1,7 +1,7 @@
+
 const searchTextQuery = window.location.search;
 const queryArr = searchTextQuery.split("=");
 const encodedSearchText = queryArr[queryArr.length - 1];
-
 
 
 const rootElement = document.getElementById("search-cards-container");
@@ -1485,7 +1485,7 @@ const getSearchResults = () => {
   //     method: "GET",
   //     headers: {
   //       "x-rapidapi-host": "youtube138.p.rapidapi.com",
-  //       "x-rapidapi-key": "d5a6c19a78msh0f83610b8e386bbp120ee5jsn684653bb1052",
+  //       "x-rapidapi-key": RAPIDAPI_KEY_SEARCH,
   //     },
   //   },
   // );
