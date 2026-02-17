@@ -52,7 +52,7 @@ const getTrendingVideos = () => {
         method: "GET",
         headers: {
             "x-rapidapi-host": "youtube138.p.rapidapi.com",
-            "x-rapidapi-key": "c0f2adc2a3mshbc4f34919840932p149e83jsn91df16349f11",
+            "x-rapidapi-key": "YASH MALIK",
         },
     });
 
